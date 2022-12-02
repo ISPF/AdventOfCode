@@ -1,0 +1,37 @@
+source("functions.R")
+name <- "Hubert"
+year <- 2022
+day <- 2
+input <- aoc_get_inputfile(day, year, name)
+
+library(tidyverse)
+game <- tibble( pair = read_lines( input ) ) %>%
+  separate( pair, into = c("Elf", "Me")) 
+
+points = c("X" = 1, "Y" = 2, "Z" = 3)
+game %>%
+  mutate( win = case_when( Elf == "A" & Me == "X" ~ 3,
+                           Elf == "B" & Me == "Y" ~ 3,
+                           Elf == "C" & Me == "Z" ~ 3,
+                           Elf == "A" & Me == "Y" ~ 6,
+                           Elf == "B" & Me == "Z" ~ 6,
+                           Elf == "C" & Me == "X" ~ 6,
+                           Elf == "A" & Me == "Z" ~ 0,
+                           Elf == "B" & Me == "X" ~ 0,
+                           Elf == "C" & Me == "Y" ~ 0),
+          score = win + points[ Me ]) %>%
+  summarise(total = sum(score))
+
+win = c("X" = 0, "Y" = 3, "Z" = 6)
+game %>%
+  mutate(play = case_when( Elf == "A" & Me == "X" ~ 3,
+                           Elf == "B" & Me == "X" ~ 1,
+                           Elf == "C" & Me == "X" ~ 2,
+                           Elf == "A" & Me == "Y" ~ 1,
+                           Elf == "B" & Me == "Y" ~ 2,
+                           Elf == "C" & Me == "Y" ~ 3,
+                           Elf == "A" & Me == "Z" ~ 2,
+                           Elf == "B" & Me == "Z" ~ 3,
+                           Elf == "C" & Me == "Z" ~ 1),
+         score = play + win[ Me ]) %>%
+  summarise(total = sum(score))
