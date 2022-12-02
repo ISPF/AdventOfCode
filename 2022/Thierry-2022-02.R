@@ -10,8 +10,7 @@ total <-  0
 
 for (i in inputs)
 {
-  print(i)
-    score=switch (unlist(i),
+    score=switch (i,
       "A X" = 4,
       "A Y" = 8,
       "A Z" = 3,
@@ -22,20 +21,17 @@ for (i in inputs)
       "C Y" = 2,
       "C Z" = 6
     )
-    print(!is.null(score))
     if(!is.null(score)){
     total <-   total + score}
-    print(total)
 }
 
-total
+print(total)
 
 total2 <- 0
 
 for (i in inputs)
 {
-  print(i)
-  score=switch (unlist(i),
+  score=switch (i,
                 "A X" = 3,
                 "A Y" = 4,
                 "A Z" = 8,
@@ -50,5 +46,5 @@ for (i in inputs)
     total2 <-   total2 + score}
 }
 
-total2
+print(total2)
 
