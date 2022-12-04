@@ -11,12 +11,11 @@ dt[,compartment1:=substring(input, 1, nchar(input)/2)]
 dt[,compartment2:=substring(input, nchar(input)/2+1, nchar(input))]
 
 getIntersect <- function(a, b){
-  intersect(strsplit(a, "")[[1]],
-                 strsplit(b, "")[[1]])
+  paste(intersect(strsplit(a, "")[[1]],
+                  strsplit(b, "")[[1]]), collapse = '')
 }
-for(i in 1:nrow(dt))
-  dt[i, inters:=getIntersect(as.character(dt[i,compartment1]),
-                             as.character(dt[i,compartment2]))]
+
+dt[, inters:=mapply(getIntersect, compartment1, compartment2)]
 
 points <- c(1:52)
 names(points) <- c(tolower(LETTERS), LETTERS)
