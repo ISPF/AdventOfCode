@@ -8,11 +8,10 @@ library(rjson)
 library(stringdist)
 library(stringr)
 library(tools)
-
+library(stringi)
+library(tidyverse)
 
 # Récupération des inputs  ---------------------------------------------
-
-
 #https://colin-fraser.net/post/a-quick-tutorial-on-importing-data-from-advent-of-code-into-r/
 
 aoc_get_response <- function(day, year = 2022, session_cookie = rstudioapi::askForSecret("Advent of Code Session Cookie")) {
