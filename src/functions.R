@@ -9,6 +9,7 @@ library(stringdist)
 library(stringr)
 library(tools)
 library(stringi)
+library(tidyverse)
 
 # Récupération des inputs  ---------------------------------------------
 #https://colin-fraser.net/post/a-quick-tutorial-on-importing-data-from-advent-of-code-into-r/
