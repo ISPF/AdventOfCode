@@ -14,3 +14,10 @@ sorted_sumlist <- sort(sumlist,decreasing=TRUE)
 sorted_sumlist[1]
 #reponse 2
 sum(sorted_sumlist[1:3])
+
+# en data.table
+dt <- data.table(col=listInputs)
+dt[, sumElements:=sapply(col, sum, na.rm=T)]
+dt <- dt[order(sumElements, decreasing = T)]
+dt[1, sumElements]
+dt[1:3, sum(sumElements)]
